@@ -1,177 +1,124 @@
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <title>eMOOC</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Bootstrap -->
-  <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+  <head>
+    <meta charset="utf-8">
+    <title>Extended MOOC</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-    <link rel="stylesheet" href="css/base.css" title="plain">
-</head>
-<body>
-  <div class="container">
-    <div class="navbar span12">
+    <!-- Le styles -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+    </style>
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../assets/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+                                   <link rel="shortcut icon" href="../assets/ico/favicon.png">
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
-        <a class="brand" href="#"></a> 
-        <ul class="nav">
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="#">Grade</a></li>
-        </ul>
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="#">Extended MOOC</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#contact">Contact</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Assignments <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">See what's due</a></li>
+                  <li><a href="#">Check grades</a></li>
+                  <li><a href="#">Contact instructor</a></li>
+                  <li class="divider"></li>
+                </ul>
+              </li>
+            </ul>
+            <form class="navbar-form pull-right">
+              <input class="span2" type="text" placeholder="Email">
+              <input class="span2" type="password" placeholder="Password">
+              <button type="submit" class="btn">Sign in</button>
+            </form>
+          </div><!--/.nav-collapse -->
+        </div>
       </div>
     </div>
 
-    <header class="jumbotron">
-    <h3>Student Assignment page</h3>
-    </header>
+    <div class="container">
 
-    <script src="http://code.jquery.com/jquery.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-  
-  <form name="form1" action="submission.html" method="GET">
-    <div class="row">
-      <div class="span12">
-       <fieldset>
-         <label>Assignment  Java1</label>
-       </fieldset>
-     </div>
-     <div class="span2">
-       <label>Language </label>
-     </div>
-     <div class="span8">
-       <select class="span2">
-         <option> 
-          Java
-        </option>
-      </select>
-    </div>
-    <div class="span2">
-      <fieldset> 
-       <button type="submit" align="btn-right" class="btn" action="submission.html">Done</button>
-     </fieldset>
-    </div>
+      <!-- Main hero unit for a primary marketing message or call to action -->
+      <div class="hero-unit">
+        <h1>Extended MOOC</h1>
+        <p>Enjoy full access to a virtual machine while typing out programming assignments. We will hook you up with the correct version of the BlueJ IDE, the Java Development Kit (JDK) and the Java Runtime (JRE) right in your browser so that you can focus on coding!</p>
+        <p><a href="/assignment.html" class="btn btn-primary btn-large">Get Started &raquo;</a></p>
+      </div>
 
-    <script src="js/util.js"></script>
-
-
-
-    <div id="noVNC_screen">
-            <div id="noVNC_status_bar" class="noVNC_status_bar" style="margin-top: 0px;">
-                <table border=0 width="100%"><tr>
-                    <td><div id="noVNC_status">Loading</div></td>
-                    <td width="1%"><div id="noVNC_buttons">
-                        <input type=button value="Send CtrlAltDel"
-                            id="sendCtrlAltDelButton">
-                            </div></td>
-                </tr></table>
-            </div>
-            <canvas id="noVNC_canvas" width="640px" height="20px">
-                Canvas not supported.
-            </canvas>
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="span4">
+          <h2>San Jose State University</h2>
+          <p>San Jose State University (often abbreviated San Jose State or SJSU) is a public university located in San Jose, California, United States. It is the founding campus of the California State University (CSU) system, and holds the distinction of being the oldest public institution of higher education on the West Coast of the United States.</p>
+          <p><a class="btn" href="http://www,sjsu.edu">View details &raquo;</a></p>
         </div>
+        <div class="span4">
+          <h2>MOOC</h2>
+          <p>A massive open online course (MOOC) is an online course aimed at large-scale interactive participation and open access via the web. In addition to traditional course materials such as videos, readings, and problem sets, MOOCs provide interactive user forums that help build a community for the students, professors, and teaching assistants (TAs). MOOCs are a recent development in distance education.</p>
+          <p><a class="btn" href="#">View details &raquo;</a></p>
+       </div>
+        <div class="span4">
+          <h2>Legal</h2>
+          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+          <p><a class="btn" href="#">View details &raquo;</a></p>
+        </div>
+      </div>
 
-        <script>
-        /*jslint white: false */
-        /*global window, $, Util, RFB, */
-        "use strict";
+      <hr>
 
-        // Load supporting scripts
-        Util.load_scripts(["webutil.js", "base64.js", "websock.js", "des.js",
-                           "input.js", "display.js", "jsunzip.js", "rfb.js"]);
+      <footer>
+        <p>&copy; SJSU 2013</p>
+      </footer>
 
-        var rfb;
+    </div> <!-- /container -->
 
-        function passwordRequired(rfb) {
-            var msg;
-            msg = '<form onsubmit="return setPassword();"';
-            msg += '  style="margin-bottom: 0px">';
-            msg += 'Password Required: ';
-            msg += '<input type=password size=10 id="password_input" class="noVNC_status">';
-            msg += '<\/form>';
-            $D('noVNC_status_bar').setAttribute("class", "noVNC_status_warn");
-            $D('noVNC_status').innerHTML = msg;
-        }
-        function setPassword() {
-            rfb.sendPassword($D('password_input').value);
-            return false;
-        }
-        function sendCtrlAltDel() {
-            rfb.sendCtrlAltDel();
-            return false;
-        }
-        function updateState(rfb, state, oldstate, msg) {
-            var s, sb, cad, level;
-            s = $D('noVNC_status');
-            sb = $D('noVNC_status_bar');
-            cad = $D('sendCtrlAltDelButton');
-            switch (state) {
-                case 'failed':       level = "error";  break;
-                case 'fatal':        level = "error";  break;
-                case 'normal':       level = "normal"; break;
-                case 'disconnected': level = "normal"; break;
-                case 'loaded':       level = "normal"; break;
-                default:             level = "warn";   break;
-            }
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap-transition.js"></script>
+    <script src="js/bootstrap-alert.js"></script>
+    <script src="js/bootstrap-modal.js"></script>
+    <script src="js/bootstrap-dropdown.js"></script>
+    <script src="js/bootstrap-scrollspy.js"></script>
+    <script src="js/bootstrap-tab.js"></script>
+    <script src="js/bootstrap-tooltip.js"></script>
+    <script src="js/bootstrap-popover.js"></script>
+    <script src="js/bootstrap-button.js"></script>
+    <script src="js/bootstrap-collapse.js"></script>
+    <script src="js/bootstrap-carousel.js"></script>
+    <script src="js/bootstrap-typeahead.js"></script>
 
-            if (state === "normal") { cad.disabled = false; }
-            else                    { cad.disabled = true; }
-
-            if (typeof(msg) !== 'undefined') {
-                sb.setAttribute("class", "noVNC_status_" + level);
-                s.innerHTML = msg;
-            }
-        }
-
-        window.onscriptsload = function () {
-            var host, port, password, path, token;
-
-            $D('sendCtrlAltDelButton').style.display = "inline";
-            $D('sendCtrlAltDelButton').onclick = sendCtrlAltDel;
-
-            WebUtil.init_logging(WebUtil.getQueryVar('logging', 'warn'));
-            document.title = unescape(WebUtil.getQueryVar('title', 'noVNC'));
-            // By default, use the host and port of server that served this file
-            host = WebUtil.getQueryVar('host', window.location.hostname);
-            port = WebUtil.getQueryVar('port', window.location.port);
-
-            // if port == 80 (or 443) then it won't be present and should be
-            // set manually
-            if (!port) {
-                if (window.location.protocol.substring(0,4) == 'http') {            
-                    port = 80;
-                }
-                else if (window.location.protocol.substring(0,5) == 'https') {            
-                    port = 443;
-                }
-            }
-
-            // If a token variable is passed in, set the parameter in a cookie.
-            // This is used by nova-novncproxy.
-            token = WebUtil.getQueryVar('token', null);
-            if (token) {
-                WebUtil.createCookie('token', token, 1)
-            }
-
-            //password = WebUtil.getQueryVar('password', '');
-	    password = "password";
-            path = WebUtil.getQueryVar('path', 'websockify');
-
-            rfb = new RFB({'target':       $D('noVNC_canvas'),
-                           'encrypt':      WebUtil.getQueryVar('encrypt',
-                                    (window.location.protocol === "https:")),
-                           'repeaterID':   WebUtil.getQueryVar('repeaterID', ''),
-                           'true_color':   WebUtil.getQueryVar('true_color', true),
-                           'local_cursor': WebUtil.getQueryVar('cursor', true),
-                           'shared':       WebUtil.getQueryVar('shared', true),
-                           'view_only':    WebUtil.getQueryVar('view_only', false),
-                           'updateState':  updateState,
-                           'onPasswordRequired':  passwordRequired});
-            rfb.connect(host, port, password, path);
-        };
-        </script>
-
-
-  </form>
-</div>
-</div>
-</body>
+  </body>
 </html>
