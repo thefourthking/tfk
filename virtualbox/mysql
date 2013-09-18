@@ -1,0 +1,17 @@
+mysql
+user: root
+pass: fourthking
+
+mysql -u root -p
+
+CREATE USER 'fourthking'@'localhost' IDENTIFIED BY 'fourthking';
+FLUSH PRIVILEGES;
+GRANT SELECT ON * . * TO 'fourthking'@'localhost';
+
+CREATE DATABASE mytestdb;
+GRANT ALL PRIVILEGES ON `mytestdb` . * TO 'fourthking'@'localhost';
+
+
+
+
+

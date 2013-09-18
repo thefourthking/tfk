@@ -1,0 +1,9 @@
+# this file identifies all the components to be deployed on the virtual box after creation
+
+# setting up the user on the DB server on the persistent VM
+mysql -u root -p
+
+CREATE USER 'fourthking'@'localhost' IDENTIFIED BY 'fourthking';
+FLUSH PRIVILEGES;
+
+

@@ -1,0 +1,30 @@
+#Specification for the grading response in case of submitting an assignment by a student
+
+
+/opt/fourthking/student_list
+file used to keep track of users who login to perform the assignment on the virtual box
+format: 
+<student id>,<lab_id>
+
+
+
+getScore <username> <labid>
+- this particular call will return a json which gives the details about the scored assignment submitted by the user.
+- filesystem structure used for this is:
+	/opt/fourthking/results/<userid>/result.json
+- the http server is being served at /opt/fourthking
+
+
+returned json details:
+{
+	submitted_at: <mm-dd-yyyy-hh-mm time>,
+	graded_score: <float score>
+}
+
+
+
+
+
+
+
+
