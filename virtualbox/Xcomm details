@@ -1,3 +1,8 @@
+# Cron entry to run it every 10 minutes
+*/10 * * * * python /home/prateek/295B/tfk/virtualbox/createJSON.py
+
+
+
 #Specification for the grading response in case of submitting an assignment by a student
 
 

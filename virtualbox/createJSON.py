@@ -7,27 +7,28 @@
 import fnmatch
 import sys
 import os
+import json
+import function
+
 
 
 f = open('/opt/fourthking/student_list', 'r')
 
+function.log("Running cron job")
 for line in f:
 
 	# pulling data from the student_list file for getting the list of users who have submitted assignments
 	print line
 
 	data = line.strip('\n')
-	data = data.split(',', 1 )
+	data = data.split(',', 3 )
 	
-	username =  data[0]
-	labid = data[1]
+	userid =  data[0]
+	username = data[1]
+	labid = data[2]
+	language = data[3]
 
-
-	#get username using user id from the DB
-	username = "prateek" # temporary hard coded value
-	language = "java"
-	# codeto be written here
-
+	
 
 	filedir = "/home/" + username
 	filename = username + "_" + labid + "." + language
@@ -37,15 +38,34 @@ for line in f:
 	code_found = 0
 	print "Looking for " + filename + " in " + filedir
 	for file in os.listdir( filedir ):
+		code_found = 0
 		if fnmatch.fnmatch(file, filename):	
 			code_found = 1
+
+
+		if code_found == 1:
+		# create the results.json if non-existent
+
+			resultfolder = "/opt/fourthking/results/" + userid 
+			if(os.path.isdir(resultfolder) == 1):
+				print "Folder exists"
+			else:
+				os.makedirs(resultfolder)
+
 			print "Evaluating assignment and grading"
 			# call the code that will evaluate and grade the assignment
 
-	if code_found == 1:
-		# create the results.json if non-existent
-		resultjson = open("/opt/fourthking/results/1/result.json", "w")
-		resultjson.write("JSON contents")
+			json_content= {}
+			json_content['student_id'] = userid
+			json_content['lab_id'] = labid
+			json_content['score'] = int(userid)*100
+
+			resultfile = resultfolder + "/result_" + labid + ".json"
+			resultjson = open(resultfile, "w")
+			resultjson.write(json.dumps(json_content))
 	
+
+
+
 
 
