@@ -2,14 +2,16 @@
 
 from django.http import HttpResponse
 from assignments.models import Assignment
+from django.template import RequestContext, loader
 
 def index(request):
     all_assignments = Assignment.objects.all()
-    all_links = ""
-    for a in all_assignments:
-	all_links += "<a href=/assignments/%d> %s </a><br>" % (a.id, a.question)
+    template = loader.get_template('assignments/index.html')
+    context = RequestContext(request, {
+        'all_assignments': all_assignments,
+    })
 
-    return HttpResponse(all_links)
+    return HttpResponse(template.render(context))
 
 def detail(request, assignment_id):
     return HttpResponse("Assignment title is: %s." % Assignment.objects.get(id = assignment_id))
