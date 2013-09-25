@@ -12,7 +12,7 @@ def index(request):
     return HttpResponse(all_links)
 
 def detail(request, assignment_id):
-    return HttpResponse("You're looking at assignment %s." % assignment_id)
+    return HttpResponse("Assignment title is: %s." % Assignment.objects.get(id = assignment_id))
 
 def results(request, assignment_id):
     return HttpResponse("You're looking at the results of assignment %s." % assignment_id)
