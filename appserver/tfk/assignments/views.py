@@ -1,9 +1,15 @@
 # Create your views here.
 
 from django.http import HttpResponse
+from assignments.models import Assignment
 
 def index(request):
-    return HttpResponse("Hello, world. You're at the assignments index.")
+    all_assignments = Assignment.objects.all()
+    all_links = ""
+    for a in all_assignments:
+	all_links += "<a href=/assignments/%d> %s </a><br>" % (a.id, a.question)
+
+    return HttpResponse(all_links)
 
 def detail(request, assignment_id):
     return HttpResponse("You're looking at assignment %s." % assignment_id)
