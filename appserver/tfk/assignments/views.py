@@ -14,7 +14,13 @@ def index(request):
     return HttpResponse(template.render(context))
 
 def detail(request, assignment_id):
-    return HttpResponse("Assignment title is: %s." % Assignment.objects.get(id = assignment_id))
+    assignment = Assignment.objects.get(id = assignment_id)
+
+    template = loader.get_template('assignments/detail.html')
+    context = RequestContext(request, {
+        'assignment': assignment,
+    })
+    return HttpResponse(template.render(context))
 
 def results(request, assignment_id):
     return HttpResponse("You're looking at the results of assignment %s." % assignment_id)

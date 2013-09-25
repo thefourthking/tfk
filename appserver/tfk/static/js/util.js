@@ -215,7 +215,7 @@ Util.conf_defaults = function(cfg, api, defaults, arr) {
 // itself is loaded via load_scripts. Once all scripts are loaded the
 // window.onscriptsloaded handler is called (if set).
 Util.get_include_uri = function() {
-    return (typeof INCLUDE_URI !== "undefined") ? INCLUDE_URI : "js/";
+    return (typeof INCLUDE_URI !== "undefined") ? INCLUDE_URI : "/static/js/";
 }
 Util._loading_scripts = [];
 Util._pending_scripts = [];
