@@ -1,5 +1,8 @@
-{% for a in all_assignments %}
+{% extends "base.html" %}
+{% block content %}
+    {% for a in all_assignments %}
     <a href="/assignments/{{ a.id }}/">{{a.question}}</a>
     <br>
-{% endfor %}
+    {% endfor %}
+{%endblock%}
 
