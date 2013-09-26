@@ -35,7 +35,11 @@ def submit(request, assignment_id):
 
 def results(request, assignment_id):
     assignment = Assignment.objects.get(id = assignment_id)
-    return HttpResponse("You're looking at the results of assignment %s. Score: %s" % (assignment.id, assignment.result))
+    template = loader.get_template('assignments/results.html')
+    context = RequestContext(request, {
+        'assignment': assignment,
+    })
+    return HttpResponse(template.render(context))
 
 def solve(request, assignment_id):
     return HttpResponse("You're solving assignment %s." % assignment_id)
