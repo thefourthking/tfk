@@ -1,6 +1,26 @@
 {% extends "base.html" %}
 {% block content %}
-    <h3>"You're looking at the results of assignment {{assignment.id}}. Score: {{assignment.result}}" 
-    <h3>
+<div class="container">
+	<div class="row-fluid">
+		<div class="lead span12">
+			Assignment ID: {{assignment.id}}
+		</div>
+	</div>
+	<div class="row">
+		<div class="lead span12">
+			Assignment details: {{assignment.question}}
+		</div>
+	</div>
+	<div class="row">
+		<div class="lead span2">
+			Assignment result:
+		</div>
+		<div class="lead span1 text-success">
+                        {{assignment.result}}
+		</div>
+	</div>
+
+
+</div>
 {% endblock %}
 

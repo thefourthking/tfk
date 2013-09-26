@@ -1,8 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
     {% for a in all_assignments %}
-    <a href="/assignments/{{ a.id }}/">{{a.question}}</a>
-    <br>
+    {% if a.result == "Ungraded" %}
+    <h4>{{a.question}} <a href="/assignments/{{ a.id }}/"> Solve</a></h4>
+    {% else%}
+    <h4>{{a.question}} <a href="/assignments/{{a.id}}/results/"> Check score</a></h4>
+    {% endif %}
     {% endfor %}
 {% endblock %}
 
