@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
-<form name="form1" action="submission.html" method="GET">
+<form name="form1" action="submit/" method="POST">{% csrf_token %}
   <div class="row">
     <div class="span12">
       <fieldset>

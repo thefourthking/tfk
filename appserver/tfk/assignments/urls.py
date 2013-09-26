@@ -7,6 +7,7 @@ urlpatterns = patterns('',
     url(r'^(?P<assignment_id>\d+)/$', views.detail, name='detail'),
     # ex: /assignments/5/results/
     url(r'^(?P<assignment_id>\d+)/results/$', views.results, name='results'),
+    url(r'^(?P<assignment_id>\d+)/submit/$', views.submit, name='submit'),
     # ex: /assignments/5/vote/
     url(r'^(?P<assignment_id>\d+)/solve/$', views.solve, name='solve'),
 )
