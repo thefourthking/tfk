@@ -2,7 +2,7 @@
 {% block content %}
     {% for a in all_assignments %}
     {% if a.result == "Ungraded" %}
-    <h4>{{a.question}} <a href="/assignments/{{ a.id }}/"> Solve</a></h4>
+    <h4>{{a.question}} <a href="/assignments/{{ a.id }}/?host=localhost&port=6080"> Solve</a></h4>
     {% else%}
     <h4>{{a.question}} <a href="/assignments/{{a.id}}/results/"> Check score</a></h4>
     {% endif %}
