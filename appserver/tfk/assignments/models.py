@@ -6,6 +6,7 @@ class Assignment(models.Model):
 	end_date = models.DateTimeField('end date')
 	question = models.CharField(max_length=500)
 	result = models.CharField(max_length=100)
+	unittestfile = models.FileField(upload_to='.')
 
         def __unicode__(self):
                 return self.question
