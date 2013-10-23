@@ -9,6 +9,7 @@ import sys
 import os
 import json
 import function
+import subprocess
 
 
 
@@ -18,8 +19,6 @@ function.log("Running cron job")
 for line in f:
 
 	# pulling data from the student_list file for getting the list of users who have submitted assignments
-	print line
-
 	data = line.strip('\n')
 	data = data.split(',', 3 )
 	
@@ -31,40 +30,61 @@ for line in f:
 	
 
 	filedir = "/home/" + username
-	filename = username + "_" + labid + "." + language
+	filename = "lab_" + labid + "." + language
+	#filename = username + "_" + labid + "." + language
 
 	# look for the code file of the assignment in the directory specified to the user.
-	# the specified folder being the home folder of the user. i.e. /home/<username>/<user_id>_<lab_id>.java
+	# the specified folder being the home folder of the user. i.e. /home/<username>/lab_<lab_id>.java
 	code_found = 0
-	print "Looking for " + filename + " in " + filedir
 	for file in os.listdir( filedir ):
 		code_found = 0
 		if fnmatch.fnmatch(file, filename):	
 			code_found = 1
 
-
 		if code_found == 1:
 		# create the results.json if non-existent
 
 			resultfolder = "/opt/fourthking/results/" + userid 
-			if(os.path.isdir(resultfolder) == 1):
-				print "Folder exists"
-			else:
+			if(os.path.isdir(resultfolder) != 1):
+				function.log("Creating resultfolder")
 				os.makedirs(resultfolder)
 
-			print "Evaluating assignment and grading"
-			# call the code that will evaluate and grade the assignment
+			function.log( "Evaluating assignment and grading")
 
+			#--------------------------------------------------------------
+			# call the code that will evaluate and grade the assignment
+		        copy_code="cp " + filedir +"/lab_" + labid + ".java /opt/fourthking/unit_tests/"+ labid	
+			prep_junit="cd /opt/fourthking/unit_tests/" + labid + \
+			";javac -cp '/opt/fourthking/lib/junit-4.7.jar:.' lab_" + labid + "Test.java;" + \
+			"junit lab_" + labid + "Test | grep 'Tests run' | awk '{print $3}' | awk -F',' '{print $1}'" 
+			f = os.popen(copy_code)
+			
+			f = os.popen(prep_junit)
+			total_tests=f.read()
+			total_tests=int(total_tests)
+			
+			prep_junit="cd /opt/fourthking/unit_tests/" + labid + \
+			";junit lab_" + labid + "Test | grep 'Tests run' | awk '{print $5}' | awk -F',' '{print $1}'" 
+			f = os.popen(prep_junit)
+			failed_tests=f.read()
+			failed_tests=int(failed_tests)
+			
+			passed_tests=total_tests-failed_tests
+			#--------------------------------------------------------------
+			
 			json_content= {}
 			json_content['student_id'] = userid
 			json_content['lab_id'] = labid
-			json_content['score'] = int(userid)*100
+			json_content['score'] = int(passed_tests)
 
+			#writing the json to the file
 			resultfile = resultfolder + "/result_" + labid + ".json"
 			resultjson = open(resultfile, "w")
 			resultjson.write(json.dumps(json_content))
 	
 
+			cleanup="cd /opt/fourthking/unit_tests/" + labid + ";rm *.class;ls -1 | grep -v 'Test' | xargs rm -f" 
+			f = os.popen(cleanup)
 
 
 
