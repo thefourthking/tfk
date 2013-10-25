@@ -44,17 +44,18 @@ for line in f:
 		if code_found == 1:
 		# create the results.json if non-existent
 
-			resultfolder = "/opt/fourthking/results/" + userid 
+			resultfolder = "/opt/fourthking/students/" + userid 
 			if(os.path.isdir(resultfolder) != 1):
-				function.log("Creating resultfolder")
+				function.log("Creating student_id folder")
 				os.makedirs(resultfolder)
+				os.makedirs(resultfolder+"/results");
 
 			function.log( "Evaluating assignment and grading")
 
 			#--------------------------------------------------------------
 			# call the code that will evaluate and grade the assignment
-		        copy_code="cp " + filedir +"/lab_" + labid + ".java /opt/fourthking/unit_tests/"+ labid	
-			prep_junit="cd /opt/fourthking/unit_tests/" + labid + \
+		        copy_code="cp " + filedir +"/lab_" + labid + ".java /opt/fourthking/unit_tests/"	
+			prep_junit="cd /opt/fourthking/unit_tests" + \
 			";javac -cp '/opt/fourthking/lib/junit-4.7.jar:.' lab_" + labid + "Test.java;" + \
 			"junit lab_" + labid + "Test | grep 'Tests run' | awk '{print $3}' | awk -F',' '{print $1}'" 
 			f = os.popen(copy_code)
@@ -63,7 +64,7 @@ for line in f:
 			total_tests=f.read()
 			total_tests=int(total_tests)
 			
-			prep_junit="cd /opt/fourthking/unit_tests/" + labid + \
+			prep_junit="cd /opt/fourthking/unit_tests" + \
 			";junit lab_" + labid + "Test | grep 'Tests run' | awk '{print $5}' | awk -F',' '{print $1}'" 
 			f = os.popen(prep_junit)
 			failed_tests=f.read()
@@ -75,15 +76,17 @@ for line in f:
 			json_content= {}
 			json_content['student_id'] = userid
 			json_content['lab_id'] = labid
-			json_content['score'] = int(passed_tests)
-
+			json_content['score'] = passed_tests
+			json_content['total_tests'] = total_tests
+			json_content['failed_tests'] = failed_tests
+			
 			#writing the json to the file
-			resultfile = resultfolder + "/result_" + labid + ".json"
+			resultfile = resultfolder + "/results/"  + labid + ".json"
 			resultjson = open(resultfile, "w")
 			resultjson.write(json.dumps(json_content))
 	
 
-			cleanup="cd /opt/fourthking/unit_tests/" + labid + ";rm *.class;ls -1 | grep -v 'Test' | xargs rm -f" 
+			cleanup="cd /opt/fourthking/unit_tests"  ";rm *.class;ls -1 | grep -v 'Test' | xargs rm -f" 
 			f = os.popen(cleanup)
 
 
