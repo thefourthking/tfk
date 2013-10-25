@@ -51,7 +51,7 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"
-MEDIA_ROOT = '/Users/Sneha'
+MEDIA_ROOT = './tmp'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -158,4 +158,13 @@ LOGGING = {
             'propagate': True,
         },
     }
+}
+
+# Application Specific Settings
+APPCONFIG = {
+    'identity_file' : 'keys/ifile',
+    'appuser' : 'appuser',
+    'sandbox_vm' : ["192.168.0.15"],
+    'sandbox_base_dir' : '/opt/fourthking/unit_tests',
+    'default_student_id': 1
 }
