@@ -10,7 +10,7 @@ class Assignment(models.Model):
 	start_date = models.DateTimeField('start date')
 	end_date = models.DateTimeField('end date')
 	question = models.CharField(max_length=500)
-	result = models.CharField(max_length=100)
+	result = models.CharField(max_length=100, default='new', editable=False)
 	unittestfile = models.FileField(upload_to='.')
 
         def __unicode__(self):
@@ -31,4 +31,4 @@ def transmit_files(sender, **kwargs):
         }
         print "WILL EXECUTE: %s" % cmd
         process = os.popen(cmd)
-        print "OUTPUT: %s" process.read()
+        print "OUTPUT: %s" % process.read()

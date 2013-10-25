@@ -1,5 +1,4 @@
 from django.conf.urls import patterns, url
-
 from assignments import views
 
 urlpatterns = patterns('',
