@@ -4,13 +4,13 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.db import models
 from django.conf import settings
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Assignment(models.Model):
 	start_date = models.DateTimeField('start date')
 	end_date = models.DateTimeField('end date')
 	question = models.CharField(max_length=500)
-	result = models.CharField(max_length=100, default='new', editable=False)
 	unittestfile = models.FileField(upload_to='.')
 
         def __unicode__(self):
@@ -32,3 +32,11 @@ def transmit_files(sender, **kwargs):
         print "WILL EXECUTE: %s" % cmd
         process = os.popen(cmd)
         print "OUTPUT: %s" % process.read()
+
+
+
+class Submission(models.Model):
+    assignment_id = models.ForeignKey(Assignment)
+    user_id = models.ForeignKey(User)
+    result = models.CharField(max_length=100, default='new', editable=False)
+
