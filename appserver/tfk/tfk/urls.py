@@ -17,4 +17,5 @@ urlpatterns = patterns('',
     url(r'^assignments/', include('assignments.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', lambda r : HttpResponseRedirect('assignments/')),
+    url(r'^accounts/login/$', 'django.contrib.auth.views.login', {'template_name': 'registration/login.html'}),
 )

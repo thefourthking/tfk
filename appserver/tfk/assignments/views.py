@@ -10,13 +10,19 @@ from django.template import RequestContext, loader
 from django.conf import settings
 
 def index(request):
-    all_assignments = Assignment.objects.all()
-    template = loader.get_template('assignments/index.html')
-    context = RequestContext(request, {
-        'all_assignments': all_assignments,
-    })
+    if request.user.is_authenticated():
+        print "logged in"
 
-    return HttpResponse(template.render(context))
+        all_assignments = Assignment.objects.all()
+        template = loader.get_template('assignments/index.html')
+        context = RequestContext(request, {
+                'all_assignments': all_assignments,
+                })
+        
+        return HttpResponse(template.render(context))
+    else:
+        return HttpResponse('Unauthorized', status=401)
+
 
 def detail(request, assignment_id):
     assignment = Assignment.objects.get(id = assignment_id)
