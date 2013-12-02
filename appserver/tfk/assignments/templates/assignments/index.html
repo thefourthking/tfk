@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
-    {% for a in all_assignments %}
+    {% for a in all_submissions %}
     {% if a.result == "new" %}
-    <h4>{{a.question}} <a href="/assignments/{{ a.id }}/?host=localhost&port=6080"> Solve</a></h4>
+    <h4>{{a.assignment_id.question}} <a href="/assignments/{{ a.assignment_id.id }}/?host=localhost&port=6080"> Solve</a></h4>
     {% else%}
-    <h4>{{a.question}} <a href="/assignments/{{a.id}}/results/"> Check score</a></h4>
+    <h4>{{a.assignment_id.question}} <a href="/assignments/{{a.assignment_id.id}}/results/"> Check score</a></h4>
     {% endif %}
     {% endfor %}
 {% endblock %}

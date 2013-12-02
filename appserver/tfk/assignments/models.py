@@ -30,8 +30,8 @@ def transmit_files(sender, **kwargs):
                 "target_filename": "%s/lab_%sTest.java" % (settings.APPCONFIG['sandbox_base_dir'], assignment.pk)
         }
         print "WILL EXECUTE: %s" % cmd
-        process = os.popen(cmd)
-        print "OUTPUT: %s" % process.read()
+        #process# = os.popen(cmd)
+        #print "OUTPUT: %s" % process.read()
 
 
 

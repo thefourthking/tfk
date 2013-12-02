@@ -5,6 +5,7 @@ import requests
 
 from django.http import HttpResponse, HttpResponseRedirect
 from assignments.models import Assignment
+from assignments.models import Submission 
 from django.template import RequestContext, loader
 
 from django.conf import settings
@@ -13,10 +14,11 @@ def index(request):
     if request.user.is_authenticated():
         print "logged in"
 
+        all_submissions = Submission.objects.filter(user_id = request.user.id)
         all_assignments = Assignment.objects.all()
         template = loader.get_template('assignments/index.html')
         context = RequestContext(request, {
-                'all_assignments': all_assignments,
+                'all_submissions': all_submissions,
                 })
         
         return HttpResponse(template.render(context))
