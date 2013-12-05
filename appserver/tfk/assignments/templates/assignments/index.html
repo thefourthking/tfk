@@ -1,11 +1,31 @@
 {% extends "base.html" %}
 {% block content %}
+
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Assignment Title</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+
     {% for a in all_submissions %}
-    {% if a.result == "new" %}
-    <h4>{{a.assignment_id.question}} <a href="/assignments/{{ a.assignment_id.id }}/?host=localhost&port=6080"> Solve</a></h4>
-    {% else%}
-    <h4>{{a.assignment_id.question}} <a href="/assignments/{{a.assignment_id.id}}/results/"> Check score</a></h4>
+    <tr>
+      <td>{{i}}</td>
+      <td>{{a.assignment_id.question}}</td>
+      {% if a.result == "new" %}
+      <td><a href="/assignments/{{ a.assignment_id.id }}/?host=localhost&port=6080"> Solve</a></td>
+      {% else%}
+      <td><a href="/assignments/{{a.assignment_id.id}}/results/"> Check score</a></td>
     {% endif %}
+    </tr>
     {% endfor %}
+  </tbody>
+</table>
+
 {% endblock %}
 

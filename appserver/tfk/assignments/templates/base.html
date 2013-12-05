@@ -10,9 +10,20 @@
     <!-- Le styles -->
     <link href="/static/css/bootstrap.css" rel="stylesheet">
     <style type="text/css">
+
+      html { 
+      background: url(/static/img/bg2.jpg) no-repeat center center fixed; 
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+      }
+
       body {
+      margin-top: 80px;
       padding-top: 60px;
       padding-bottom: 40px;
+      background-color: rgba(255,255,255,0.8);
       }
     </style>
     <link href="/static/css/bootstrap-responsive.css" rel="stylesheet">
@@ -38,7 +49,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="#">Extended MOOC</a>
+          <a class="brand" href="/">Extended MOOC</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li class="active"><a href="#">Home</a></li>
@@ -54,11 +65,22 @@
                 </ul>
               </li>
             </ul>
-            <form class="navbar-form pull-right">
-              <input class="span2" type="text" placeholder="Email">
-              <input class="span2" type="password" placeholder="Password">
+	    {% if user.is_authenticated %}
+
+          <div class="nav-collapse collapse pull-right">
+            <ul class="nav">
+              <li><a href="/accounts/logout/">Logout</a></li>
+	    </ul>
+	  </div>
+
+	    {% else %}
+            <form class="navbar-form pull-right" method="post" action="/accounts/login/?next=/">{% csrf_token %}
+              <input name="username" class="span2" type="text" placeholder="username">
+              <input name="password" class="span2" type="password" placeholder="password">
               <button type="submit" class="btn">Sign in</button>
             </form>
+	    {% endif %}
+
           </div><!--/.nav-collapse -->
         </div>
       </div>

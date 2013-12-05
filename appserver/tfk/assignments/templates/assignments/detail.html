@@ -5,29 +5,18 @@
   <div class="row">
     <div class="span12">
       <fieldset>
-        <label>{{ assignment.question }}</label>
+	<h2>{{ assignment.question }}</h2>
+	<p>Instructions for the assignment can be found on the desktop of the VM below!</p>
       </fieldset>
     </div>
     <div class="span2">
-      <label>Language </label>
-    </div>
-    <div class="span8">
-      <select class="span2">
-        <option> 
-          Java
-        </option>
-      </select>
-    </div>
-    <div class="span2">
       <fieldset> 
-	<button type="submit" align="btn-right" class="btn" action="submission.html">Done</button>
+	<button type="submit" align="btn-right" class="btn btn-primary" action="submission.html">I'm done, submit it!</button>
       </fieldset>
     </div>
   </div>
 
   <script src="/static/js/util.js"></script>
-  
-
 
   <div id="noVNC_screen">
     <div id="noVNC_status_bar" class="noVNC_status_bar" style="margin-top: 0px;">

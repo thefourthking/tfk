@@ -23,7 +23,9 @@ def index(request):
         
         return HttpResponse(template.render(context))
     else:
-        return HttpResponse('Unauthorized', status=401)
+        template = loader.get_template('assignments/landing.html')
+        context = RequestContext(request)
+        return HttpResponse(template.render(context))
 
 
 def detail(request, assignment_id):
