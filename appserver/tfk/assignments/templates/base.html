@@ -53,7 +53,9 @@
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li><a href="/">Home</a></li>
+	      {% if user.is_staff %}
               <li><a href="/admin">Instructor Login</a></li>
+	      {% endif %}
             </ul>
 	    {% if user.is_authenticated %}
 
