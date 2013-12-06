@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
-<form name="form1" action="submit/" method="POST">{% csrf_token %}
+<form name="form1" action="/assignments/{{assignment.id}}/submit/" method="POST">{% csrf_token %}
   <div class="row">
     <div class="span12">
       <fieldset>
@@ -11,7 +11,7 @@
     </div>
     <div class="span2">
       <fieldset> 
-	<button type="submit" align="btn-right" class="btn btn-primary" action="submission.html">I'm done, submit it!</button>
+	<button type="submit" align="btn-right" class="btn btn-primary">I'm done, submit it!</button>
       </fieldset>
     </div>
   </div>
@@ -22,7 +22,7 @@
     <div id="noVNC_status_bar" class="noVNC_status_bar" style="margin-top: 0px;">
       <table border=0 width="100%"><tr>
           <td><div id="noVNC_status">Loading</div></td>
-          <td width="1%"><div id="noVNC_buttons">
+          <td width="1%"><div id="noVNC_buttons" style="display: none;">
               <input type=button value="Send CtrlAltDel"
                      id="sendCtrlAltDelButton">
           </div></td>
@@ -94,8 +94,13 @@
         WebUtil.init_logging(WebUtil.getQueryVar('logging', 'warn'));
         document.title = unescape(WebUtil.getQueryVar('title', 'noVNC'));
         // By default, use the host and port of server that served this file
-        host = WebUtil.getQueryVar('host', window.location.hostname);
-        port = WebUtil.getQueryVar('port', window.location.port);
+        // host = WebUtil.getQueryVar('host', window.location.hostname);
+        // port = WebUtil.getQueryVar('port', window.location.port);
+
+	host = "{{tfk_settings.websockets_proxy_host}}";
+	port = "{{tfk_settings.websockets_proxy_port}}";
+
+	console.log("Connecting to websockets on " + host + ":" + port);
 
         // if port == 80 (or 443) then it won't be present and should be
         // set manually
@@ -116,7 +121,8 @@
         }
 
         //password = WebUtil.getQueryVar('password', '');
-	password = "password";
+
+	password = "{{tfk_settings.vnc_password}}";
         path = WebUtil.getQueryVar('path', 'websockify');
 
         rfb = new RFB({'target':       $D('noVNC_canvas'),

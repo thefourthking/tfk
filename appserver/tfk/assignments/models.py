@@ -6,7 +6,6 @@ from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import User
 
-# Create your models here.
 class Assignment(models.Model):
 	start_date = models.DateTimeField('start date')
 	end_date = models.DateTimeField('end date')
@@ -15,6 +14,19 @@ class Assignment(models.Model):
 
         def __unicode__(self):
                 return self.question
+
+
+class Submission(models.Model):
+    assignment_id = models.ForeignKey(Assignment)
+    user_id = models.ForeignKey(User)
+    result = models.CharField(max_length=100, default='new')
+
+
+class TfkSettings(models.Model):
+    websockets_proxy_host = models.CharField(max_length=100, default='localhost')
+    websockets_proxy_port = models.CharField(max_length=100, default='6080')
+    vnc_password =   models.CharField(max_length=100, default='tfkpassword')
+
 
 @receiver(post_save, sender=Assignment)
 def transmit_files(sender, **kwargs):
@@ -34,9 +46,4 @@ def transmit_files(sender, **kwargs):
         #print "OUTPUT: %s" % process.read()
 
 
-
-class Submission(models.Model):
-    assignment_id = models.ForeignKey(Assignment)
-    user_id = models.ForeignKey(User)
-    result = models.CharField(max_length=100, default='new', editable=False)
 

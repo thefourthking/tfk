@@ -1,26 +1,27 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="container">
-	<div class="row-fluid">
-		<div class="lead span12">
-			Assignment ID: {{assignment.id}}
-		</div>
-	</div>
-	<div class="row">
-		<div class="lead span12">
-			Assignment details: {{assignment.question}}
-		</div>
-	</div>
-	<div class="row">
-		<div class="lead span2">
-			Assignment result:
-		</div>
-		<div class="lead span1 text-success">
-                        {{assignment.result}}
-		</div>
-	</div>
-
-
+  <div class="row-fluid">
+    <div class="lead span12">
+      Submission ID: {{submission.id}}
+    </div>
+  </div>
+  <div class="row">
+    <div class="lead span12">
+      Assignment details: {{assignment.question}}
+    </div>
+  </div>
+  <div class="row">
+    <div class="lead span2">
+      Assignment result:
+    </div>
+    <div class="lead span1 text-success">
+      {{submission.result}}
+    </div>
+  </div>
+  <p>If the result of your assignment submission still says 'solved', that means we are still grading your submission.
+  <p>Please check back in some time or contact your instructor!
+  <p><a class="btn btn-primary" href="/">Go back</a>
 </div>
 {% endblock %}
 
