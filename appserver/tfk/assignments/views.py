@@ -45,19 +45,31 @@ def submit(request, assignment_id):
     submission = Submission(user_id_id=request.user.id, assignment_id_id=assignment_id)
     submission.result = 'solved'
     submission.save()
+    return HttpResponseRedirect("/assignments/work")
+#    return HttpResponseRedirect("/assignments/submissions/%s/results" % submission.id)
 
-    return HttpResponseRedirect("/assignments/submissions/%s/results" % submission.id)
+
+def work(request):
+    tfk_settings = TfkSettings.objects.latest('pk')
+    template = loader.get_template('assignments/work.html')
+    context = RequestContext(request, {
+        'tfk_settings': tfk_settings,
+        'user_id': request.user.id,
+    })
+    return HttpResponse(template.render(context))
 
 def results(request, submission_id):
+    tfk_settings = TfkSettings.objects.latest('pk')
     submission = Submission.objects.get(id = submission_id)
     assignment = submission.assignment_id
 
     if submission.result == 'solved':
         try:
-            results_url = "http://%s:8000/students/%s/results/%s.json" % (
-                settings.APPCONFIG['sandbox_vm'][0], 
-                settings.APPCONFIG['default_student_id'], 
-                assignment_id)
+            results_url = "http://%(sandbox_host)s:8080/students/%(student_id)s/results/%(assignment_id)s.json" % {
+                'sandbox_host': tfk_settings.sandbox_host,
+                'student_id': request.user.id,
+                'assignment_id': assignment.id,
+            }
             print "Will retrieve results like this: GET %s" % results_url
             response = requests.get(results_url)
             json_data = json.loads(response.text)

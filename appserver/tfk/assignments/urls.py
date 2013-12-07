@@ -9,4 +9,5 @@ urlpatterns = patterns('',
     url(r'^(?P<assignment_id>\d+)/submit/$', views.submit, name='submit'),
     # ex: /assignments/5/vote/
     url(r'^(?P<assignment_id>\d+)/solve/$', views.solve, name='solve'),
+    url(r'^work$', views.work, name='work'),
 )
